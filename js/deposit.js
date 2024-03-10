@@ -16,17 +16,24 @@ document.getElementById('btn-deposit').addEventListener('click', function(){
         alert('Please enter a number.')
         return;
     }
+    else{
+        if(newDepositAmount > 0){
+            const currentDepositTotal =  previousDepositTotal + newDepositAmount;
+            depositTotalElement.innerText = currentDepositTotal;
 
+            const balanceTotalElement = document.getElementById('total-amount');
+            const previousTotalAmountString = balanceTotalElement.innerText;
+            const previousTotalAmount = parseFloat(previousTotalAmountString);
 
-    const currentDepositTotal =  previousDepositTotal + newDepositAmount;
-    depositTotalElement.innerText = currentDepositTotal;
+            const currentTotalAmount = previousTotalAmount + newDepositAmount;
+            balanceTotalElement.innerText = currentTotalAmount; 
+        }
+        else{
+            alert('Wrong Input');
+        }
+    }
 
-    const balanceTotalElement = document.getElementById('total-amount');
-    const previousTotalAmountString = balanceTotalElement.innerText;
-    const previousTotalAmount = parseFloat(previousTotalAmountString);
-
-    const currentTotalAmount = previousTotalAmount + newDepositAmount;
-    balanceTotalElement.innerText = currentTotalAmount; 
+    
 
 })
 
@@ -50,7 +57,7 @@ document.getElementById('btn-withdraw').addEventListener('click', function(){
         return;
     }
     else{
-        if(totalBalanceElement > 0 && totalBalanceElement  >= newWithdrawAmount){
+        if(totalBalanceElement > 0 && totalBalanceElement  >= newWithdrawAmount && newWithdrawAmount > 0){
             const withdrawTotalElement = document.getElementById('withdraw-total');
             const previousWithdrawTotalString = withdrawTotalElement.innerText;
             const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
@@ -67,7 +74,7 @@ document.getElementById('btn-withdraw').addEventListener('click', function(){
             
         }
         else{
-            alert('Insufficient Balance.')
+            alert('Insufficient Balance or Wrong Input')
         }
     }
 })
